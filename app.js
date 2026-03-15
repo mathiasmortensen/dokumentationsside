@@ -1,21 +1,21 @@
 import express from 'express';
-import path from 'path';
 
 const app = express();
-const port = 8080;
 
-app.use('/static', express.static('views'));
-app.use('/assets', express.static('assets'));
+app.use(express.static('public'));
+app.use(express.static('assets'));
 
-app.get('/', (req, res) => {
-    res.sendFile(path.resolve('views/index.html'));
-});
 
-console.log(path.resolve());
+import pagesRouter from './routers/pagesRouter.js';
 
-app.listen(port, (error) => {
+app.use(pagesRouter);
+
+const PORT = process.env.PORT || 8080;
+
+
+app.listen(PORT, (error) => {
     if (error) {
         return console.log(`error starting the server: ${error}`);
     }
-    console.log(`server is running port: ${port}`);
+    console.log(`server is running port: ${PORT}`);
 });
