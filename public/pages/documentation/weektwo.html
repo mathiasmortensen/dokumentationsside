@@ -4,8 +4,174 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>$$DOCUMENT_TITLE$$</title>
+
+      <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css"
+  />
+
+    <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/github-dark.min.css"
+  />
+
+  <link rel="stylesheet" href="/assets/css/main.css" />
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/highlight.min.js"></script>
+
+
+  <script>
+    hljs.highlightAll();
+  </script>
+
 </head>
 <body>
-    
+<div class="layout">
+
+
+<nav>
+<a href="#URL">Anatomy of an URL</a>
+<a href="#HTML">HTML</a>
+<a href="#Express">Express</a>
+<a href="#buildtools">Build Tools</a>
+<a href="#XSS">XSS (Cross-Site Scripting)</a>
+</nav>
+
+
+
+<main class="content">
+<section id="URL">
+<h1>Anatomy of an URL</h1>
+<p>URL's are used everyday when people navigate the web.</p>
+<p>However, understanding the structure of a URL is often overlooked and tossed aside because of how easy it is to use without understanding.</p>
+<pre><code class="language-javascript">
+https://www.google.com/search?hl=en&q=anatomy%20of%20an%20url
+
+protocol identifier http://
+subdomain www
+domain name google
+top level domain (TLD) .com
+endpoint /search
+query string / query parameters ?hl=en&q=anatomy%20of%20an%20url
+</code></pre>
+
+
+
+</section>
+<section class="HTML">
+<h1>HTML</h1>
+<p>HTML stands for HyperText Markup Language, and it is basically the standard language for creating web pages.</p>
+
+<pre><code class="language-html">
+</code></pre>
+
+<pre>
+&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;Document&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;h1&gt;This is a simple HTML header&lt;/h1&gt;
+
+&lt;p&gt;This is a simple HTML paragraph.&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</pre></code></pre>
+
+<p>It parses the HTML tags and renders the content in the browser.</p>
+
+</section>
+
+
+<section id="Express">
+
+<h1>Express - A Web Framework for Node.js</h1>
+<p>Express is a framework that allows developers to build web applications and API's with ease.</p>
+<p>It provides a bunch of features that make it easy to create a web application.</p>
+
+<h1>So how does it work?</h1>
+<pre><code class="language-javascript">
+const express = require('express');
+const app = express();
+
+app.get('/', (req, res) => {
+  res.send('Hello, World!');
+});
+
+const port = 8080;
+
+app.listen(port, () => {
+  console.log(`Server running at http://localhost:${port}`);
+});
+</code></pre>
+
+<p>In the code above, firstly Express is imported with `require('express')` and an instance called 'Express' is created.</p>
+<p>After this, we instansiate the variable `App` with the Express instance.</p>
+<p>With this, we can now define routes on our app instance.</p>
+<p>In this case, we define a GET route on the root path ('/') that sends back 'Hello, World!' in HTML format.</p>
+<p>At last a port is defined on the variable `port, and it is then used in the `app.listen(port, () => {console.log(`Server running at http://localhost:${port}`)});`</p>
+<p>This makes the server start on http://localhost:8080</p>
+</section>
+
+
+
+<section id="buildtools">
+<h1>Build Tools</h1>
+<p>Build tools are used to automate tasks in the development process, such as bundling, running tests, and starting the application.</p>
+<p>The one we've been using is Npm (Node Package Manager).</p>
+<p>NPM uses a package.json file to determine the dependencies and scripts for a given project.</p>
+
+<pre><code class="language-json">
+{
+  "type": "module",
+  "dependencies": {
+    "express": "^5.2.1"
+  }
+}
+</code></pre>
+
+<p>In the code above, we have a package.json file that specifies that our project uses a module type and has a dependency on the Express framework</p>
+
+<p>The package.json file can also be used to define custom scripts for the project environment.</p>
+<pre><code class="language-json">
+{
+  "type": "module",
+  "dependencies": {
+    "express": "^5.2.1"
+  },
+  "scripts": {
+    "start": "node index.js"
+  }
+}
+
+<p>This script that we have defined allows us to start the application by running `npm run start` or `npm start`</p>
+</code></pre>
+</section>
+
+<section id="XSS">
+
+
+<h1>XSS (Cross-Site Scripting)</h1>
+<p>XSS is a type of security vulnerability that allows hackers to inject malicious scripts into web pages.</p>
+<p>This particular vulnerability can be exploited and in the end it can lead to remote code execution.</p>
+
+<pre><code class="language-javascript">
+// EXAMPLE OF XSS VULNERABILITY
+
+const containerDiv = document.getElementById('container');
+
+&lt;img src="http://google.com/img.png" onerror="alert('XSS Vulnerability!')"&gt;
+</code></pre>
+
+<p>In the code above, we have an image tag with an `onerror` attribute that executes a JavaScript alert when the image fails to load.
+     This is a simple example of an XSS vulnerability.
+     This allows the attacker to execute JavaScript code on the server.</p>
+</section>
+
+
+
 </body>
 </html>
