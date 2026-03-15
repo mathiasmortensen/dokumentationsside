@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>$$DOCUMENT_TITLE$$</title>
+
+<link
+rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/github-dark.min.css"
+/>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/highlight.min.js"></script>
+
+<script>
+hljs.highlightAll();
+</script>
+
+</head>
+
+<body>
+
+<h2>Introduction to JS</h2>
+
+<h3>Variables</h3>
+
+<p>Always use <code>const</code> by default unless the value needs to change.</p>
+
+<p><code>const</code> is constant in the assignment. Example:</p>
+
+<pre><code>
+const myNumber = 4;
+
+console.log(myNumber);
+
+// This prints 4
+</code></pre>
+
+
+<p>Common Data Types:</p>
+
+<p>String, Boolean, Number, BigInt, Object, Symbol, null, undefined</p>
+
+<pre><code>
+const person = {
+
+    // key-value pair
+
+    name: "Mathias"
+
+};
+
+person.name = "Gustav";
+
+person.age = 10021132134;
+
+console.log(person);
+
+
+const people = [];
+
+people.push("Victor");
+
+console.log(people);
+</code></pre>
+
+
+<p>How to define strings:</p>
+
+<p>single quotes ' ', double quotes " ", and backticks ` `</p>
+
+
+<p>Single quotes offer no string interpolation (variables cannot be inserted directly). Escape sequences are also required when trying to use the same quote inside the string. Example:</p>
+
+<pre><code>
+const textExample = 'My name is Mathias\' and I like apples.';
+</code></pre>
+
+
+<p>Double quotes " "</p>
+
+<p>Double quotes offer the exact same functionality as single quotes, the only difference is the character.</p>
+
+
+<p>At last we have the infamous backticks... ` `</p>
+
+<p>Backticks can be used for string interpolation and for multiline strings.</p>
+
+
+<pre><code>
+let importantChangingNumber = 17;
+
+const needsImportantNumber =
+`The Super Important Changing Number For Today: ${importantChangingNumber}`;
+
+console.log(needsImportantNumber);
+
+// The Super Important Changing Number For Today: 17
+</code></pre>
+
+
+<p>This will make <code>console.log</code> print:</p>
+
+<p><strong>The Super Important Changing Number For Today: 17</strong></p>
+
+
+</body>
+</html>
