@@ -129,16 +129,68 @@ export default router;
 
                 <p>Commonjs is another module system that is a bit outdated but can still be used.</p>
                 <p>The syntax is different when 'importing'.</p>
-                <p>Instead of importing you use the keywork require. Example below:</p>
+                <p>Instead of importing you use the keyword require. Example below:</p>
 
-                <pre><code class="language-javascript"></code></pre>
+                <pre><code class="language-javascript">
+                    const express = require('express');
+                </code></pre>
 
+                <h2>Commonjs vs ESM</h2>
+                <p>Use commonjs when mainting old legacy-code and use ESM (module) type for new and modern development.</p>
             </section>
 
             <section id="redirection">
+                <h1>Redirection in Express </h1>
+                <p>At first i will go over the built in functions in Express.. (SERVER SIDE REDIRECTION)</p>
+                <pre><code class="language-javascript">
+                 res.redirect('/new-site');
+                 res.redirect(301, 'https://movedpermanently.com');   
+                </code></pre>
+                <p>You can use this code in a route, and then it will redirect the user based on the url.</p>
+                
+                <p>With the next two methods you will be able to do a client-side redirection, because the user is sent the site, and then the redirection happens.</p>
+
+                <p>However you can also use the DOM that is provided with native JS.</p>
+                <pre><code class="language-javascript">
+                    window.location.href = '/new-site';
+                </code></pre>
+
+                <p>This will redirect the user as well.</p>
+
+            
+                <p>The last way (that i know of), you can use to redirect the user is pure HTML.</p>
+            
+            <pre><code class="language-html">
+                &lt;meta http-equiv="refresh" content="0; url=/new-page"&gt;
+            </code></pre>
+
+            <p>This will redirect the user when accessed.</p>
             </section>
 
+
+
             <section id="npm">
+                <h1>NPM - and how to initialize new projects!</h1>
+                <p>Run the <code>npm init</code> command, and you will be guided through a number of questions, naming, versioning, descriptions.</p>
+                <p>You can also skip the questions with the <code>-y</code> flag.</p>
+
+                <pre><code class="language-json">
+{
+  "name": "test",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs"
+}</code></pre>
+
+<p>In this package.json all the metadata for your project is specified.</p>
+<p>This includes things such as 'author', 'license', type(commonjs or module). </p>
             </section>
 
     
