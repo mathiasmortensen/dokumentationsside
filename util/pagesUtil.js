@@ -34,3 +34,8 @@ const weekSix = readPage('./public/pages/documentation/weeksix.html');
 export const weekSixPage = constructPage(weekSix, {
     documentTitle: 'Week 6 - Online Node.js REPL + SSR'
 });
+
+const weekSeven = readPage('./public/pages/documentation/weekseven.html');
+export const weekSevenPage = constructPage(weekSeven, {
+    documentTitle: 'Week 7 - Asynchronous JavaScript'
+});

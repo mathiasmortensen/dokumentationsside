@@ -1,33 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>$$DOCUMENT_TITLE$$</title>
-
-  <link
-    rel="stylesheet"
-    href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css"
-  />
-
-    <link
-    rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/github-dark.min.css"
-  />
-
-  <link rel="stylesheet" href="/assets/css/main.css" />
-
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/highlight.min.js"></script>
-
-  <script>
-    hljs.highlightAll();
-  </script>
-</head>
-
-<body>
-<div class="layout">
-
-<nav>
+<nav class="sidebar">
 <a href="#intro">Introduction</a>
 <a href="#variables">Variables</a>
 <a href="#scope">Scope</a>
@@ -43,7 +14,8 @@
 <a href="#rest">REST API Design</a>
 </nav>
 
-<main class="content">
+    <main>
+
 
 <section id="intro">
 <h1>Introduction to JavaScript</h1>
@@ -137,6 +109,8 @@ if (true) {
 console.log(message); // error - outside of block
 </code></pre>
 
+
+</section>
 
 <section id="types">
 <h2>JavaScript Data Types</h2>
@@ -455,8 +429,3 @@ DELETE /items/{id}
 </code></pre>
 
 </section>
-
-</main>
-</div>
-</body>
-</html>

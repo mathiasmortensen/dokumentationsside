@@ -1,6 +1,6 @@
 import { Router } from 'express';
 
-import { weekOnePage, weekTwoPage, weekThreePage, weekFourPage, weekFivePage, weekSixPage, indexPage } from '../util/pagesUtil.js';
+import { weekOnePage, weekTwoPage, weekThreePage, weekFourPage, weekFivePage, weekSixPage, weekSevenPage, indexPage } from '../util/pagesUtil.js';
 
 const router = Router();
 
@@ -30,6 +30,10 @@ router.get('/weekfive', (req, res) => {
 
 router.get('/weeksix', (req, res) => {
     res.send(weekSixPage);
+});
+
+router.get('/weekseven', (req, res) => {
+    res.send(weekSevenPage);
 });
 
 export default router;

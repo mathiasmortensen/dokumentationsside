@@ -1,52 +1,13 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>$$DOCUMENT_TITLE$$</title>
-
-          <link
-    rel="stylesheet"
-    href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css"
-  />
-
-    <link
-    rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/github-dark.min.css"
-  />
-
-  <link rel="stylesheet" href="/assets/css/main.css" />
-
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/highlight.min.js"></script>
-
-
-  <script>
-    hljs.highlightAll();
-  </script>
-
-</head>
-<body>
-  <!--   
-
-CRUDable REST API - Part II.
-
-Fetch.
-
-Time.
-
-Deployment.
--->
-<div class="layout">
-
-<nav>
-<a href="#crud">Create Read Update Delete</a>
-<a href="#fetch">Fetch</a>
-<a href="#time">Time</a>
-<a href="#deployment">Deployment</a>
+<nav class="sidebar">
+  <a href="#crud">CRUDable REST API - Part II</a>
+  <a href="#fetch">Fetch</a>
+  <a href="#time">Time - using Date</a>
+  <a href="#deployment">Deployment with dedicated server (home brew version)</a>
 </nav>
 
+    <main>
 
-<main class="content">
+
 
     <section id="crud">
     <h1>CRUDable REST API - Part II</h1>
@@ -219,6 +180,3 @@ fetch('http://mathiasmortensen.dk/vigtigjson')
         <p>Now comes the fun part, you simply start your application! run <code>node app.js</code> and the application should start and be available!</p>
         
     </section>
-
-</body>
-</html>

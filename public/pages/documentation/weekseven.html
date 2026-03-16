@@ -1,50 +1,18 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>$$DOCUMENT_TITLE$$</title>
-
-
-  <link
-    rel="stylesheet"
-    href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css"
-  />
-
-    <link
-    rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/github-dark.min.css"
-  />
-
-  <link rel="stylesheet" href="/assets/css/main.css" />
-
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/highlight.min.js"></script>
-
-  <script>
-    hljs.highlightAll();
-  </script>
-
-</head>
-<body>
-
-<div class="layout">
-
-<nav>
+<nav class="sidebar">
 <a href="#placement">Placement of Code in JS</a>
 <a href="#syncvsasync">Asynchronous and Synchronous Code when reading files</a>
 <a href="#SSRvsCSR">Server Side Rendering vs Client Side Rendering</a>
 <a href="#nodemonext">Nodemon EXT</a>
 <a href="#routers">Routers in Express</a>
 </nav>
-
-<main class="content">
+    <main>
 
 
     <section id="placement">
         <h1>Placement of Code</h1>
         <p>Placing your very specific code at the top of your HTML files can cause unexpected errors, however there is a good reason behind this..</p>
         <p>When HTML gets parsed, it parses from top to bottom, meaning that the document will be read sequentially.</p>
-        <pre><code class="language-javaascript">
+        <pre><code class="language-javascript">
 &lt;head&gt;
   &lt;script&gt;
     console.log(document.getElementById("test"));
@@ -64,10 +32,112 @@
 
     <section id="syncvsasync">
         <h1>Synchronous vs Asynchronous when reading files</h1>
-        <p></p>
+        <p>I would argue that using asynchronous methods is generally better for reading files, as it allows the program to continue executing other code while waiting for the file read operation to complete.</p>
+        <p>This also means that the main thread wont be blocked and the same thing goes for the user interface.</p>
+        <p>On the other hand we have synchronous methods, that block the main thread until the file read is done.</p>
+      
+        <p>In some cases, if the files that are being read are small, one could still use synchronous without making the application suffer performance losses.</p>
 
-    </section>
+
+        <pre><code class="language-javascript">
+          // Synchronous
+  app.get("/data", (req, res) =&gt; {
+    const data = fs.readFileSync("smallFile.json");
+    res.send(data);
+});
+
+  app.get("/data", async (req, res) =&gt; { 
+    const data = await fs.readFile("hugeFile.json", "utf-8");
+    res.send(data);
+  });
+</code></pre>
+
+<p>This would be my approach to handling file reading in Node.js Express.</p>
+      </section>
+
+
+
+      <section id="SSRvsCSR">
+        <h1>Server Side Rendering vs Client Side Rendering</h1>
+        <p>Server Side Rendering involves generating the HTML on the server before sending it to a client.</p>
+<p>Client Side Rendering on the other hand, involves sending the file to the client and then having the client render it.</p>
+<p>Another important point is that you can make the server load files from startup, saving memory instead of loading them every time a request is made.</p>
+
+<p>So how are the different approaches?</p>
+
+<pre><code class="language-javascript">
+// Server Side Rendering
+app.get("/", (req, res) =&gt; {
+  const html = fs.readFileSync("index.html", "utf-8");
+  res.send(html);
+});
+
+// Client Side Rendering
+app.get("/", (req, res) =&gt; {
+  res.sendFile(path.join(__dirname, "index.html"));
+});
+</code></pre>
+      </section>
+      <section id="nodemonext">
+        <h1>Nodemon EXT</h1>
+        <p>Nodemon is a tool that helps develop node.js applications beacuse it automatically restart the application if files are changed.</p>
+        <p>Nodemon is however also very customizable.</p>
+        <p>You're able to create config files in the .json format, for example:</p>
+<pre><code class="language-json">
+{
+  "watch": ["src"],
+  "ext": "js,json",
+  "ignore": ["src/**/*.test.js"],
+  "exec": "node src/index.js"
+}
+</code></pre>
+
+
+<p>This means that whenever it detects changes in the src directory specifically js and json files, it will restart the application.</p>
+
+      </section>
+
+      <section id="routers">
+        <h1>Routers in Express</h1>
+        <p>Routers are a critical part of the Express.js framework, allowing you to route users to different parts of your application.</p>
+        <pre><code class="language-javascript">pagesRouter.js (FILE)
+
+import { Router } from "express";
+
+const router = Router();
+router.get("/", (req, res) =&gt; {
+  res.send({data: "hello i am under the water"});
+ });
+
+export default router;
+        </code></pre>
+<p>In this example, a simple router is created with a single route that sends a JSON response with the message "hello i am under the water".</p>
+
+
+<p>But this router doesn't work yet, because it needs to 'used' in the main application.</p>
+
+<p>Here's how its done..</p>
+
+<pre><code class="language-javascript">app.js (FILE)
+import express from 'express';
+
+const app = express();
+
+import pagesRouter from './routers/pagesRouter.js';
+
+app.use(pagesRouter);
+
+const PORT = process.env.PORT || 8080;
+
+app.listen(PORT, (error) => {
+    if (error) {
+        return console.log(`error starting the server: ${error}`);
+    }
+    console.log(`server is running port: ${PORT}`);
+});
+</code></pre>
+
+<p>By importing the pagesRouter from './routers/pagesRouter.js' we are now able to let the main application use the routes defined in the external router file.</p>
+
 </section>
-
-
 

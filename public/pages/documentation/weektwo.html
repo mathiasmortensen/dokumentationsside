@@ -1,35 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>$$DOCUMENT_TITLE$$</title>
-
-      <link
-    rel="stylesheet"
-    href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css"
-  />
-
-    <link
-    rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/github-dark.min.css"
-  />
-
-  <link rel="stylesheet" href="/assets/css/main.css" />
-
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/highlight.min.js"></script>
-
-
-  <script>
-    hljs.highlightAll();
-  </script>
-
-</head>
-<body>
-<div class="layout">
-
-
-<nav>
+<nav class="sidebar">
 <a href="#URL">Anatomy of an URL</a>
 <a href="#HTML">HTML</a>
 <a href="#Express">Express</a>
@@ -37,19 +6,14 @@
 <a href="#XSS">XSS (Cross-Site Scripting)</a>
 </nav>
 
+    <main>
 
 
-<main class="content">
-
-</section>
-<section class="HTML">
+<section id="HTML">
 <h1>HTML</h1>
 <p>HTML stands for HyperText Markup Language, and it is basically the standard language for creating web pages.</p>
 
 <pre><code class="language-html">
-</code></pre>
-
-<pre>
 &lt;!DOCTYPE html&gt;
 &lt;html lang="en"&gt;
 &lt;head&gt;
@@ -63,7 +27,7 @@
 &lt;p&gt;This is a simple HTML paragraph.&lt;/p&gt;
 &lt;/body&gt;
 &lt;/html&gt;
-</pre></code></pre>
+</code></pre>
 
 <p>It parses the HTML tags and renders the content in the browser.</p>
 
@@ -130,9 +94,9 @@ app.listen(port, () => {
     "start": "node index.js"
   }
 }
+</code></pre>
 
 <p>This script that we have defined allows us to start the application by running `npm run start` or `npm start`</p>
-</code></pre>
 </section>
 
 <section id="XSS">
@@ -154,8 +118,3 @@ const containerDiv = document.getElementById('container');
      This is a simple example of an XSS vulnerability.
      This allows the attacker to execute JavaScript code on the server.</p>
 </section>
-
-
-
-</body>
-</html>

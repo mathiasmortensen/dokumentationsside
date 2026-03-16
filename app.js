@@ -4,11 +4,12 @@ const app = express();
 
 import pagesRouter from './routers/pagesRouter.js';
 
+app.use(pagesRouter);
+
 
 app.use(express.static('public'));
 app.use(express.static('assets'));
 
-app.use(pagesRouter);
 
 const PORT = process.env.PORT || 8080;
 

@@ -1,48 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>$$DOCUMENT_TITLE$$</title>
-
-      <link
-    rel="stylesheet"
-    href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css"
-  />
-
-    <link
-    rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/github-dark.min.css"
-  />
-
-  <link rel="stylesheet" href="/assets/css/main.css" />
-
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/highlight.min.js"></script>
-
-
-  <script>
-    hljs.highlightAll();
-  </script>
-
-</head>
-<body>
-<!-- 
-
-Serving static files in Express.
-
-Exporting and importing in frontend (type="module" attribute).
-
-Commonjs vs. ES Modules in Node.js.
-
-Client-side redirection vs. server-side redirection.
-
-npm init and meta data in package.json.
--->
-
-
-<div class="layout">
-
-    <nav>
+        <nav class="sidebar">
         <a href="#static">Serving static files in Express</a>
         <a href="#modules">Exporting and importing in frontend (type="module" attribute)</a>
         <a href="#commonjs">Commonjs vs. ES Modules in Node.js</a>
@@ -50,7 +6,8 @@ npm init and meta data in package.json.
         <a href="#npm">npm init and meta data in package.json</a>
         </nav>
 
-        <main class="content">
+            <main>
+
 
             <section id="static">
             <h1>Serving static files in Express</h1>
@@ -65,7 +22,7 @@ npm init and meta data in package.json.
             app.use(express.static('assets'));    
             </code></pre>
 
-            <p>We use this chunk of code to tell the application that users can be served files that are in the 'assets' directory.<p>
+            <p>We use this chunk of code to tell the application that users can be served files that are in the 'assets' directory.</p>
             
                 <p>it is also vital that when you start the application you need to be in the directory that contains the 'assets' directory, otherwise this probably won't work.</p>
             </section>
@@ -192,7 +149,3 @@ export default router;
 <p>In this package.json all the metadata for your project is specified.</p>
 <p>This includes things such as 'author', 'license', type(commonjs or module). </p>
             </section>
-
-    
-</body>
-</html>
