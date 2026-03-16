@@ -31,7 +31,7 @@
 
 <nav>
 <a href="#placement">Placement of Code in JS</a>
-<a href="#syncvsasync">Asynchronous and Synchronous Code</a>
+<a href="#syncvsasync">Asynchronous and Synchronous Code when reading files</a>
 <a href="#SSRvsCSR">Server Side Rendering vs Client Side Rendering</a>
 <a href="#nodemonext">Nodemon EXT</a>
 <a href="#routers">Routers in Express</a>
@@ -40,5 +40,34 @@
 <main class="content">
 
 
+    <section id="placement">
+        <h1>Placement of Code</h1>
+        <p>Placing your very specific code at the top of your HTML files can cause unexpected errors, however there is a good reason behind this..</p>
+        <p>When HTML gets parsed, it parses from top to bottom, meaning that the document will be read sequentially.</p>
+        <pre><code class="language-javaascript">
+&lt;head&gt;
+  &lt;script&gt;
+    console.log(document.getElementById("test"));
+  &lt;/script&gt;
+&lt;/head&gt;
+
+&lt;body&gt;
+  &lt;div id="test"&gt;&lt;/div&gt;
+&lt;/body&gt;
+        </code></pre>
+<p>With this code example, the script gets loaded before the div with the test ID.</p>
+<p>This means that the script is trying to grab an element that is not yet initialized, and because of this it will return null..</p>
     
+<p>Instead you want to place the script at the bottom, so it gets executed after the initialization of the tag.</p>
+
+    </section>
+
+    <section id="syncvsasync">
+        <h1>Synchronous vs Asynchronous when reading files</h1>
+        <p></p>
+
+    </section>
+</section>
+
+
 
