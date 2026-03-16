@@ -1,11 +1,230 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>$$DOCUMENT_TITLE$$</title>
-</head>
-<body>
+
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css"
+    />
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/github-dark.min.css"
+    />
+
+    <link rel="stylesheet" href="/assets/css/main.css" />
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/highlight.min.js"></script>
+
+    <script>
+      hljs.highlightAll();
+    </script>
+  </head>
+
+  <body>
+    <div class="layout">
+      <!--
+    Can define and run scripts with NPM.
+
+    Know how to define environment variables natively in Node.js (natively = not using any libraries).
+
+    Structuring HTML with semantic HTML.
+
+    Can point out which files are client files and which are server files.
+
+    Knows at least one way to style a footer so that it appears at the bottom, always.
+
+    Can argue for a better way to structure the frontend (assets, pages).
+
+    Can argue for the pros and cons of CDN vs. serving content locally
+      -->
+
+      <nav>
+        <a href="#npmscripts">NPM Scripts</a>
+        <a href="#nativevariables"
+          >Defining environment variables natively in Node.js</a
+        >
+        <a href="#semantichtml">Semantic HTML</a>
+        <a href="#footer">Styling a footer</a>
+        <a href="#frontendstructure">Structuring of Frontend</a>
+        <a href="#cdnvslocal">CDN vs Serving Content Locally?</a>
+      </nav>
+
+      <section class="main">
+        <section id="npmscripts">
+          <h1>Scripts with NPM</h1>
+          <p>
+            In the package.json included with projects that utilize NPM
+          </p>
+          <p>
+            Lets say you want a custom script that installs the dependencies of
+            a project and run the application right after. In this case you
+            would do this:
+          </p>
+
+          <pre><code>
+{
+  "name": "test",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "installnrun": "npm install && node app.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs"
+}
+</code></pre>
+
+          <p>
+            Here a script called installnrun is created.. When you run this
+            command in the terminal, it will then execute the script:
+            <code>npm run installnrun</code>
+          </p>
+        </section>
+
+        <section id="nativevariables">
+          <h1>Native Environment Variables in Node.js</h1>
+          <p>
+            You can define the port with the variable inside of
+            <code>process.env.PORT</code>
+          </p>
+          <p>
+            It is also possible to set temproray values to variables with the
+            <code>export PORT=8080</code> command inside your shell.
+          </p>
+          <p>Node.js also reads the port exported from the terminal.</p>
+        </section>
+
+        <section id="semantichtml">
+          <h1>Semantic HTML</h1>
+          <p>
+            This topic is all about giving your code meaning and not only looks.
+          </p>
+          <p>
+            Instead of just using divs for everything, you use tags that tells
+            Search Engines and the browser what the content of site actually is.
+          </p>
+
+          <pre><code class="language-html">
+&lt;main&gt;
+    &lt;h1&gt;Headline&lt;/h1&gt;
+    &lt;section&gt;
+        Content HERE
+    &lt;/section&gt;
+    &lt;footer&gt;Bottom Text&lt;/footer&gt;
+&lt;/main&gt;
+</code></pre>
+        </section>
+
+        <section id="footer">
+          <h1>How to make a footer sticky!</h1>
+
+          <p>
+            You really dont want a footer floating arround on your page, which
+            is why there are a couple solutions to this.
+          </p>
+
+          <p>Let us presume your HTML looks like this:</p>
+
+          <pre><code class="language-html">
+&lt;body&gt;
+  &lt;/Indhold&lt;/main&gt;
+  &lt;/footerBund&lt;/footer&gt;
+&lt;/body&gt;
+</code></pre>
+
+          <p>
+            To make the footer always stay at the bottom of the page as in not
+            being sticky (glued to your view..), then you would need some CSS..
+          </p>
+
+          <pre><code class="language-css">
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+main {
+    flex: 1;
+}
+</code></pre>
+
+          <p>
+            With this; you body is forced to be filled with all space until it
+            reaches the footer.
+          </p>
+
+          <p>What if you always want to be able to see the footer?</p>
+          <p>The same HTML will be used for this example:</p>
+
+          <pre><code class="language-css">
+footer {
+    position: sticky;
+    bottom: 0;
+}
+</code></pre>
+        </section>
+
+        <section id="frontendstructure">
+          <p>Below you will see how i structured my project.</p>
+
+          <p>Arguments for:</p>
+
+          <ul>
+            <li>Readible</li>
+            <li>Onboard at ease</li>
+            <li>Easy handling of static files</li>
+            <li>Scaleability</li>
+          </ul>
+
+          <pre><code class="language-bash">
+dokumentationsside/
+├── node_modules/
+├── public/
+│   ├── assets/
+│   │   └── css/
+│   ├── components/
+│   │   ├── footer.html
+│   │   └── header.html
+│   └── pages/
+│       ├── documentation/
+│       │   ├── weekfive.html
+│       │   ├── weekfour.html
+│       │   ├── weekOne.html
+│       │   ├── weeksix.html
+│       │   ├── weekthree.html
+│       │   └── weektwo.html
+│       └── index/
+│           └── index.html
+├── routers/
+│   └── pagesRouter.js
+├── util/
+│   ├── pagesUtil.js
+│   └── templatingEngine.js
+├── .gitignore
+├── app.js
+├── package-lock.json
+└── package.json
+</code></pre>
     
-</body>
+</section>
+
+<section id="cdnvslocal">
+    <h1>Which is better?</h1>
+    <p>It all depends on what you prefer and if you can promise to serve x files.</p>
+    <p>If you dont have enough space on the server you deploy on, using CDN can be nice, since you dont need to have it locally then.</p>
+    <p>However if you know people from china are going to visit your web application, and you deploy on a chinese server in China, then you probably shouldn't serve files from servers in europe.</p>
+</section>
+
+
+      </section>
+    </div>
+  </body>
 </html>
