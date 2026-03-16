@@ -4,8 +4,169 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>$$DOCUMENT_TITLE$$</title>
+
+
+  <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css"
+  />
+
+    <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/github-dark.min.css"
+  />
+
+  <link rel="stylesheet" href="/assets/css/main.css" />
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/highlight.min.js"></script>
+
+  <script>
+    hljs.highlightAll();
+  </script>
+
 </head>
 <body>
-    
+
+<div class="layout">
+
+<nav>
+<a href="#nodemon">Introduction</a>
+<a href="#loops">Loops and loop methods</a>
+<a href="#URL">Anatomy of an url</a>
+<a href="#parameters">Parameters</a>
+</nav>
+
+<main class="content">
+
+    <section id="nodemon">
+<h1>What is Nodemon?</h1>
+
+<p>Nodemon is a tool that helps developers to debug applications while they are being developed.</p>
+<p>One of its core features is auto-restarting the node application when file changes in the directory are detected.</p>
+<p>Another one of its features is providing real-time feedback during development.</p>
+
+<pre><code class="language-bash">
+npm install -g nodemon
+
+
+nodemon nameOfYourFile.js
+</code></pre>
+
+<p>With this chunk of text, you install nodemon globally on your computer hence the -g flag, when it is done installing, you can use nodemon simply by typing "nodemon application.js" and it will be started.</p>
+
+</section>
+
+        
+<section id="loops">
+
+<h3>Loops and loop methods</h3>
+
+<pre><code class="language-javascript">
+for (var i = 0; i < 3; i++) {
+  setTimeout(() => console.log("var:", i), 100);
+}
+
+for (let i = 0; i < 3; i++) {
+  setTimeout(() => console.log("let:", i), 100);
+}
+</code></pre>
+
+<p>
+Because <code>var</code> does not create block scope,
+all callbacks reference the same variable. Here you can truly see as to why <code>var</code> is problematic.</p>
+
+
+
+<section id="loop-methods">
+<h2>Loop Methods</h2>
+
+<p>
+Modern JavaScript prefers loop methods over traditional loops.
+</p>
+
+<h3>forEach</h3>
+
+<pre><code class="language-javascript">
+const numbers = [1,2,3];
+
+numbers.forEach(n => console.log(n));
+</code></pre>
+
+<h3>map</h3>
+
+<pre><code class="language-javascript">
+const prices = [100,200,300];
+
+const taxed = prices.map(p => p * 1.25);
+</code></pre>
+
+<h3>filter</h3>
+
+<pre><code class="language-javascript">
+const ages = [12,18,25];
+
+const adults = ages.filter(age => age >= 18);
+</code></pre>
+
+<h3>reduce</h3>
+
+<pre><code class="language-javascript">
+const numbers = [10,20,30];
+
+const total = numbers.reduce((sum,n) => sum + n, 0);
+</code></pre>
+
+<h3>find</h3>
+
+<pre><code class="language-javascript">
+const users = [
+  {name:"Mathias", active:false},
+  {name:"Victor", active:true}
+];
+
+const activeUser = users.find(u => u.active);
+</code></pre>
+
+<h3>Why Loop methods are really good</h3>
+
+<ul>
+<li>Readability</li>
+<li>Declarative</li>
+<li>Less boilerplate</li>
+<li>More predictable</li>
+</ul>
+
+</section>
+
+<section id="URL">
+<h1>Anatomy of an URL</h1>
+<p>URL's are used everyday when people navigate the web.</p>
+<p>However, understanding the structure of a URL is often overlooked and tossed aside because of how easy it is to use without understanding.</p>
+<pre><code class="language-javascript">
+https://www.google.com/search?hl=en&q=anatomy%20of%20an%20url
+
+protocol identifier http://
+subdomain www
+domain name google
+top level domain (TLD) .com
+endpoint /search
+query string / query parameters ?hl=en&q=anatomy%20of%20an%20url
+</code></pre>
+
+        </section>
+
+        <section id="parameters">
+        <h1>Parameters in requests</h1>
+            
+            <p>As mentioned in the previous "chapter", we have something called query string and query parameters (they are the same thing)</p>
+            <p>When making a post request, we can also include parameters in the request body.</p>
+            <p>We also have something called path parameters, which are parameters that are included in the URL path.</p>
+            <p>For example, in the URL <code>https://example.com/users/123</code>, the <code>123</code> is a path parameter that can be used to identify a specific user.</p>
+            <p>While query parameters are used to pass data in the URL query string, path parameters are used to identify resources in the URL path.</p>
+
+        </section>
+
+
+
 </body>
 </html>

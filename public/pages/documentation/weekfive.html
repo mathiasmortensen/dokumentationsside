@@ -4,8 +4,143 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>$$DOCUMENT_TITLE$$</title>
+
+      <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css"
+  />
+
+    <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/github-dark.min.css"
+  />
+
+  <link rel="stylesheet" href="/assets/css/main.css" />
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/highlight.min.js"></script>
+
+
+  <script>
+    hljs.highlightAll();
+  </script>
+
 </head>
 <body>
+<!-- 
+
+Serving static files in Express.
+
+Exporting and importing in frontend (type="module" attribute).
+
+Commonjs vs. ES Modules in Node.js.
+
+Client-side redirection vs. server-side redirection.
+
+npm init and meta data in package.json.
+-->
+
+
+<div class="layout">
+
+    <nav>
+        <a href="#static">Serving static files in Express</a>
+        <a href="#modules">Exporting and importing in frontend (type="module" attribute)</a>
+        <a href="#commonjs">Commonjs vs. ES Modules in Node.js</a>
+        <a href="#redirection">Client-side redirection vs. server-side redirection</a>
+        <a href="#npm">npm init and meta data in package.json</a>
+        </nav>
+
+        <main class="content">
+
+            <section id="static">
+            <h1>Serving static files in Express</h1>
+
+            <p>When you set up a web application you want to limit how much the users of site can have access too.</p>
+            <p>In some way a web application allows users to access data on a remote server, and that is why access has to be limited.</p>
+
+
+
+            <p>Assume all the neccessary lines of code are already written e.g <code>(app.get('/', (req, res) => {res.send({data: "it works!"})}));</code></p>
+            <pre><code class="language-javascript">
+            app.use(express.static('assets'));    
+            </code></pre>
+
+            <p>We use this chunk of code to tell the application that users can be served files that are in the 'assets' directory.<p>
+            
+                <p>it is also vital that when you start the application you need to be in the directory that contains the 'assets' directory, otherwise this probably won't work.</p>
+            </section>
+
+            <section id="modules">
+            <h1>Exporting and importing in frontend (type="module" attribute)</h1>
+
+            <p>Modules is one way to make a JavaScript file have access to functions or other neccessary chunks of code in another JavaScript file.</p>
+
+            <p>The first thing that needs to be done is editing the package.json in your project.</p>
+
+            <pre><code class="language-json">
+            {
+  "dependencies": {
+    "express": "^5.2.1"
+  }
+}
+            </code></pre>
+
+<p>This is just your plain simple package.json, however this does not make it possible to export or import modules.. For this to work you need this...</p>
+
+<pre><code class="language-json">
+{
+  "type": "module",
+  "dependencies": {
+    "express": "^5.2.1"
+  }
+}    
+</code></pre>
+<p>With this code, it allowes you to import "modules" that are exported from other files..</p>
+
+<pre><code class="language-javascript">
+    FILE: app.js
+import express from 'express';
+
+const app = express();
+
+import pagesRouter from './routers/pagesRouter.js';
+
+    FILE: pagesRouter.js
+import { Router } from 'express';
+
+import { weekOnePage, weekTwoPage, weekThreePage, weekFourPage, weekFivePage, weekSixPage, indexPage } from '../util/pagesUtil.js';
+
+const router = Router();
+
+router.get('/', (req, res) => {
+    res.send(indexPage);
+});
+
+// MORE CODE
+
+export default router;
+</code></pre>
+
+<p>When the module is exported at the bottom, it is now accessible to other JavaScript files, if imported.</p>
+            </section>
+
+            <section id="commonjs">
+                <h1>Commonjs in JavaScript</h1>
+
+                <p>Commonjs is another module system that is a bit outdated but can still be used.</p>
+                <p>The syntax is different when 'importing'.</p>
+                <p>Instead of importing you use the keywork require. Example below:</p>
+
+                <pre><code class="language-javascript"></code></pre>
+
+            </section>
+
+            <section id="redirection">
+            </section>
+
+            <section id="npm">
+            </section>
+
     
 </body>
 </html>

@@ -2,10 +2,11 @@ import express from 'express';
 
 const app = express();
 
+import pagesRouter from './routers/pagesRouter.js';
+
+
 app.use(express.static('public'));
 app.use(express.static('assets'));
-
-import pagesRouter from './routers/pagesRouter.js';
 
 app.use(pagesRouter);
 

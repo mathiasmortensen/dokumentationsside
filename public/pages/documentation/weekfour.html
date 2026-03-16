@@ -4,8 +4,221 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>$$DOCUMENT_TITLE$$</title>
+
+          <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css"
+  />
+
+    <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/github-dark.min.css"
+  />
+
+  <link rel="stylesheet" href="/assets/css/main.css" />
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/highlight.min.js"></script>
+
+
+  <script>
+    hljs.highlightAll();
+  </script>
+
 </head>
 <body>
+  <!--   
+
+CRUDable REST API - Part II.
+
+Fetch.
+
+Time.
+
+Deployment.
+-->
+<div class="layout">
+
+<nav>
+<a href="#crud">Create Read Update Delete</a>
+<a href="#fetch">Fetch</a>
+<a href="#time">Time</a>
+<a href="#deployment">Deployment</a>
+</nav>
+
+
+<main class="content">
+
+    <section id="crud">
+    <h1>CRUDable REST API - Part II</h1>
+    <p>On this page, i will show how to implement this in express. This is mainly because the topic on the last page was more theoretic</p>
+    <pre><code class="language-javascript">
+        const express = require('express');
+const app = express();
+
+app.use(express.json());
+
+let movies = [
+    { id: 1, title: 'Garlic is as good as ten mothers', year: 1976 },
+    { id: 2, title: 'Microscopic Liquid Subway to Oblivion' }
+];
+
+let nextId = 3;
+
+app.get("/movies", (req, res) => {
+    res.send({ data: movies });
+});
+
+app.get("/movies/:id", (req, res) => {
+    const providedMovieId = Number(req.params.id);
+    const foundMovie = movies.find((movie) => movie.id === providedMovieId);
+
+    if (!foundMovie) {
+        return res.status(404).send({ errorMessage: `No movie found by id: ${req.params.id}` });
+    }
+    res.send(foundMovie);
     
+});
+
+app.post("/movies", (req, res) => {
+    if (!req.body) {
+        return res.status(400).send({ errorMessage: 'No JSON body provided.' });
+    }
+
+    const providedMovie = req.body;
+
+    providedMovie.id = nextId++;
+
+    movies.push(providedMovie);
+
+    res.send({ data: providedMovie });
+});
+
+app.patch("/movies/:id", (req, res) => {
+    const providedMovieId = Number(req.params.id);
+    const foundMovieIndex = movies.findIndex((movie) => movie.id === providedMovieId);
+
+    if (foundMovieIndex === -1) {
+        res.status(404).send({ errorMessage: `No movie found by id: ${req.params.id}` });
+    }
+
+    const foundMovie = movies[foundMovieIndex];
+    const providedMovie = req.body;
+
+    const movieToCreate = { ...foundMovie, ...providedMovie, id: providedMovieId };
+    movies[foundMovieIndex] = movieToCreate;
+
+    res.send({ data: movieToCreate });
+});
+
+
+app.delete("/movies/:id", (req, res) => {
+    const providedMovieId = Number(req.params.id);
+    const foundMovieIndex = movies.findIndex((movie) => movie.id === providedMovieId);
+
+    if (foundMovieIndex === -1) {
+        return res.status(404).send({ errorMessage: `No movie found by id: ${req.params.id}` });
+    }
+
+    movies.splice(foundMovieIndex, 1);
+
+    res.status(204).send();
+ });
+
+app.listen(8080);
+    </code></pre>
+
+<p>In the example above a simple functioning CRUD API is demonstrated.</p>
+<p>CRUD stands for Create, Read, Update and Delete, which are the four basic operations that can be performed on a resource.</p>
+<p>In this exact example we have implemented all four operations for managing a collection of movies.</p>
+<p>We have 5 routes tho, which is because of the two get methods. One is for getting all the movies, while the other is for a specific movie.</p> 
+</section>
+
+    <section id="fetch">
+    
+        <h1>Fetch</h1>
+        <p>Fetch is a built-in function in JavaScript and it it used to make HTTP requests from the browser.</p>
+        <pre><code class="language-javascript">
+fetch('http://mathiasmortensen.dk/vigtigjson')
+  .then(response => response.json())
+    .then(data => console.log(data))
+    .catch(error => console.error('Error:', error));
+            </code></pre>
+    
+            <p>In the code above, we are making a GET request to the URL <code>http://mathiasmortensen.dk/vigtigjson</code> and then we are logging the response data to the console.</p>
+            <p>Fetch returns a promise, which is why we can use <code>.then()</code> to handle the response.</p>
+    </section>
+
+    <section id="time">
+    
+    <h1>Time - using Date</h1>        
+
+        <p> The Date object in JavaScript is used to work with dates and times. </p>
+        <p>Date.now() returns a timestamp in the Unix Epoch Time format (which is milliseconds, since Jan. 1st 1970)</p>
+
+        <pre><code class="language-javascript">
+            const timestamp = Date.now();
+            console.log(timestamp); // milliseconds since Jan. 1st 1970
+
+            const day = new Date().getDay();
+            console.log(day); // returns the day of the week (0-6)
+
+            const weekDay = new Date().toLocaleString('en-dk', { weekday: 'long' });
+            console.log(weekDay); // returns the day of the week in long format (e.g. "Monday")
+
+            const month = new Date().getMonth();
+            console.log(month); // returns the month (0-11)
+
+            const year = new Date().getFullYear();
+            console.log(year); // returns the year (e.g. 2026)
+        </code></pre>
+
+    </section>
+    <section id="deployment">
+    <h1>Deployment with dedicated server (home brew version)</h1>
+        <p>We got taught a way to deploy with a website called vercel</p>
+        <p>The method we used to deploy was interchangable, and i have a standby server at home, which is why I didn't use vercel...</p>
+        
+        
+        <p>This will be an almost complete and thorough guide to deployment on a dedicated server.. HEADLESS</p>
+
+        <h2>Server Setup</h2>
+        <p>First we need an operating system on the dedicated server. I use debian for reference.</p>
+
+        <p>When the headless server is done setting up, then the first step is complete.</p>
+
+        <h2>Network Configuration (Skip if using dedicated server, unless you have problems accessing the deployed application)</h2>
+
+        <p>To access the application on the web, the port that your application is using needs to be forwarded or open</p>
+
+        <p>You need to open the port on the operating system, if you use UFW, the command is simply</p>
+        <p><code>ufw allow 8080</code> This will open the port both on UDP and TCP. TCP is recommended so you minimize packet loss.</p>
+
+        <p>If this is done on a machine at home, you will likely need a static ip address. </p>
+        <p>If you have a static ip address the process is rather simple now.</p>
+        <p>You will need to access the interface which you can access on the browser, using the default gateway (often its just, http://192.168.1.1)</p>
+        <p>To find the default gateway you need net-tools. Install it by using this chunk of text: <code>sudo apt get install net-tools</code></p>
+        <p>this will make the <code>ifconfig</code> command work.</p>
+
+        <h2>Runtime and neccessary tools!</h2>
+        <p>This course uses Node.js, so you need to install nodejs on the server, npm, git and screens.</p>
+
+        <p>Once these programs are installed you're almost set to go!</p>
+        <p>If your repository is public you do not need to login when using the git commands..</p>
+        <p>Next step is cloning your repository onto your server using the command <code>git clone https://www.github.com/exampleUser/exampleProject</code></p>
+
+        <p>Once the cloning process is done, you want to change directory into the folder containing your repository code..</p>
+    
+        <p>Then you install all of the dependencies, using the <code>npm install</code> command.</p>
+
+        <p>Now you want to create a screen session, so when you close out of your ssh-session the application wont exit..</p>
+
+        <p>Type <code>screen</code> in the terminal, after this you press <code>Ctrl + A</code> followed by <code>c</code>.</p>
+
+        <p>Now you're inside of a screen session!</p>
+
+        <p>Now comes the fun part, you simply start your application! run <code>node app.js</code> and the application should start and be available!</p>
+        
+    </section>
+
 </body>
 </html>

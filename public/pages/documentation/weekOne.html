@@ -1,9 +1,9 @@
-<!doctype html>
-<html lang="en" data-theme="dark">
+<!DOCTYPE html>
+<html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>JavaScript Documentation</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>$$DOCUMENT_TITLE$$</title>
 
   <link
     rel="stylesheet"
@@ -37,7 +37,6 @@
 <a href="#strict">Strict Mode</a>
 <a href="#strings">Strings</a>
 <a href="#functions">Functions</a>
-<a href="#loop-methods">Loop Methods</a>
 <a href="#ternary">Ternary Operator</a>
 <a href="#spread">Spread Operator</a>
 <a href="#json">JSON</a>
@@ -58,7 +57,7 @@ This document covers most of the basics of JavaScript, and it is suposed to repr
 <section id="variables">
 <h2>Variables</h2>
 
-<p>JavaScript has three ways to declare variables:</p>
+<p>In JavaScript there are three ways to declare variables:</p>
 
 <ul>
 <li><code>const</code></li>
@@ -138,23 +137,6 @@ if (true) {
 console.log(message); // error - outside of block
 </code></pre>
 
-<h3>let vs var in loops</h3>
-
-<pre><code class="language-javascript">
-for (var i = 0; i < 3; i++) {
-  setTimeout(() => console.log("var:", i), 100);
-}
-
-for (let i = 0; i < 3; i++) {
-  setTimeout(() => console.log("let:", i), 100);
-}
-</code></pre>
-
-<p>
-Because <code>var</code> does not create block scope,
-all callbacks reference the same variable. Here you can truly see as to why <code>var</code> is problematic.</p>
-
-</section>
 
 <section id="types">
 <h2>JavaScript Data Types</h2>
@@ -367,66 +349,6 @@ processUser((name) => console.log(name));
 
 </section>
 
-<section id="loop-methods">
-<h2>Loop Methods</h2>
-
-<p>
-Modern JavaScript prefers loop methods over traditional loops.
-</p>
-
-<h3>forEach</h3>
-
-<pre><code class="language-javascript">
-const numbers = [1,2,3];
-
-numbers.forEach(n => console.log(n));
-</code></pre>
-
-<h3>map</h3>
-
-<pre><code class="language-javascript">
-const prices = [100,200,300];
-
-const taxed = prices.map(p => p * 1.25);
-</code></pre>
-
-<h3>filter</h3>
-
-<pre><code class="language-javascript">
-const ages = [12,18,25];
-
-const adults = ages.filter(age => age >= 18);
-</code></pre>
-
-<h3>reduce</h3>
-
-<pre><code class="language-javascript">
-const numbers = [10,20,30];
-
-const total = numbers.reduce((sum,n) => sum + n, 0);
-</code></pre>
-
-<h3>find</h3>
-
-<pre><code class="language-javascript">
-const users = [
-  {name:"Mathias", active:false},
-  {name:"Victor", active:true}
-];
-
-const activeUser = users.find(u => u.active);
-</code></pre>
-
-<h3>Why Loop methods are really good</h3>
-
-<ul>
-<li>Readability</li>
-<li>Declarative</li>
-<li>Less boilerplate</li>
-<li>More predictable</li>
-</ul>
-
-</section>
 
 <section id="ternary">
 <h2>Ternary Operator</h2>
@@ -483,9 +405,10 @@ Keys are always declared as string in JSON.
 <section id="rest">
 <h2>REST API Design</h2>
 
-<p>
-REST APIs use HTTP methods to interact with the given resources.
-</p>
+<p> REST (Representational State Transfer) is an architectural style for designing networked applications.</p>
+<p>One of the many ideas behind REST is to make web applications simple, scalable, and maintainable.</p>
+<p>Resource identification is a key concept in REST, where each resource is identified by a unique URI (Uniform Resource Identifier).</p>
+<p>It is also important to note that REST APIs are stateless, meaning that each request from a client to a server must contain all the information needed to understand and process the request.</p>
 
 <table>
 <tr>
