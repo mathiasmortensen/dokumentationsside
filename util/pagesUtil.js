@@ -1,41 +1,41 @@
 import { readPage, constructPage } from "./templatingEngine.js";
 
-const index = readPage('./public/pages/index/index.html');
+const index = readPage("./public/pages/index/index.html");
 export const indexPage = constructPage(index, {
-    documentTitle: 'Frontpage'
+  documentTitle: "Frontpage",
 });
 
-const weekOne = readPage('./public/pages/documentation/weekone.html');
+const weekOne = readPage("./public/pages/documentation/weekone.html");
 export const weekOnePage = constructPage(weekOne, {
-    documentTitle: 'Week 1 - Introduction to JS'
+  documentTitle: "Week 1 - Introduction to JS",
 });
 
-const weekTwo = readPage('./public/pages/documentation/weektwo.html');
+const weekTwo = readPage("./public/pages/documentation/weektwo.html");
 export const weekTwoPage = constructPage(weekTwo, {
-    documentTitle: 'Week 2 - First server with express'
+  documentTitle: "Week 2 - First server with express",
 });
 
-const weekThree = readPage('./public/pages/documentation/weekthree.html');
+const weekThree = readPage("./public/pages/documentation/weekthree.html");
 export const weekThreePage = constructPage(weekThree, {
-    documentTitle: 'Week 3 - Movies REST API'
+  documentTitle: "Week 3 - Movies REST API",
 });
 
-const weekFour = readPage('./public/pages/documentation/weekfour.html');
+const weekFour = readPage("./public/pages/documentation/weekfour.html");
 export const weekFourPage = constructPage(weekFour, {
-    documentTitle: 'Week 4 - Date'
+  documentTitle: "Week 4 - Date and Deployment",
 });
 
-const weekFive = readPage('./public/pages/documentation/weekfive.html');
+const weekFive = readPage("./public/pages/documentation/weekfive.html");
 export const weekFivePage = constructPage(weekFive, {
-    documentTitle: 'Week 5 - HTML Server'
+  documentTitle: "Week 5 - HTML Server",
 });
 
-const weekSix = readPage('./public/pages/documentation/weeksix.html');
+const weekSix = readPage("./public/pages/documentation/weeksix.html");
 export const weekSixPage = constructPage(weekSix, {
-    documentTitle: 'Week 6 - Online Node.js REPL + SSR'
+  documentTitle: "Week 6 - Online Node.js REPL + SSR",
 });
 
-const weekSeven = readPage('./public/pages/documentation/weekseven.html');
+const weekSeven = readPage("./public/pages/documentation/weekseven.html");
 export const weekSevenPage = constructPage(weekSeven, {
-    documentTitle: 'Week 7 - Asynchronous JavaScript'
+  documentTitle: "Week 7 - Asynchronous JavaScript",
 });

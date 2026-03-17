@@ -1,50 +1,75 @@
-        <nav class="sidebar">
-        <a href="#static">Serving static files in Express</a>
-        <a href="#modules">Exporting and importing in frontend (type="module" attribute)</a>
-        <a href="#commonjs">Commonjs vs. ES Modules in Node.js</a>
-        <a href="#redirection">Client-side redirection vs. server-side redirection</a>
-        <a href="#npm">npm init and meta data in package.json</a>
-        </nav>
+<nav class="sidebar">
+  <a href="#static">Serving static files in Express</a>
+  <a href="#modules"
+    >Exporting and importing in frontend (type="module" attribute)</a
+  >
+  <a href="#commonjs">Commonjs vs. ES Modules in Node.js</a>
+  <a href="#redirection">Client-side redirection vs. server-side redirection</a>
+  <a href="#npm">npm init and meta data in package.json</a>
+</nav>
 
-            <main>
+<main>
+  <section id="static">
+    <h1>Serving static files in Express</h1>
 
+    <p>
+      When you set up a web application you want to limit how much the users of
+      site can have access too.
+    </p>
+    <p>
+      In some way a web application allows users to access data on a remote
+      server, and that is why access has to be limited.
+    </p>
 
-            <section id="static">
-            <h1>Serving static files in Express</h1>
+    <p>
+      Assume all the neccessary lines of code are already written e.g
+      <code
+        >(app.get('/', (req, res) => {res.send({data: "it works!"})}));</code
+      >
+    </p>
+    <pre><code class="language-javascript">
+app.use(express.static('assets'));    
+</code></pre>
 
-            <p>When you set up a web application you want to limit how much the users of site can have access too.</p>
-            <p>In some way a web application allows users to access data on a remote server, and that is why access has to be limited.</p>
+    <p>
+      We use this chunk of code to tell the application that users can be served
+      files that are in the 'assets' directory.
+    </p>
 
+    <p>
+      it is also vital that when you start the application you need to be in the
+      directory that contains the 'assets' directory, otherwise this probably
+      won't work.
+    </p>
+  </section>
 
+  <section id="modules">
+    <h2>Exporting and importing in frontend (type="module" attribute)</h2>
 
-            <p>Assume all the neccessary lines of code are already written e.g <code>(app.get('/', (req, res) => {res.send({data: "it works!"})}));</code></p>
-            <pre><code class="language-javascript">
-            app.use(express.static('assets'));    
-            </code></pre>
+    <p>
+      Modules is one way to make a JavaScript file have access to functions or
+      other neccessary chunks of code in another JavaScript file.
+    </p>
 
-            <p>We use this chunk of code to tell the application that users can be served files that are in the 'assets' directory.</p>
-            
-                <p>it is also vital that when you start the application you need to be in the directory that contains the 'assets' directory, otherwise this probably won't work.</p>
-            </section>
+    <p>
+      The first thing that needs to be done is editing the package.json in your
+      project.
+    </p>
 
-            <section id="modules">
-            <h1>Exporting and importing in frontend (type="module" attribute)</h1>
-
-            <p>Modules is one way to make a JavaScript file have access to functions or other neccessary chunks of code in another JavaScript file.</p>
-
-            <p>The first thing that needs to be done is editing the package.json in your project.</p>
-
-            <pre><code class="language-json">
-            {
-  "dependencies": {
-    "express": "^5.2.1"
-  }
+    <pre><code class="language-json">
+{
+"dependencies": {
+"express": "^5.2.1"
 }
-            </code></pre>
+}
+</code></pre>
 
-<p>This is just your plain simple package.json, however this does not make it possible to export or import modules.. For this to work you need this...</p>
+    <p>
+      This is just your plain simple package.json, however this does not make it
+      possible to export or import modules.. For this to work you need this...
+    </p>
 
-<pre><code class="language-json">
+    <pre><code class="language-json">
 {
   "type": "module",
   "dependencies": {
@@ -52,17 +77,20 @@
   }
 }    
 </code></pre>
-<p>With this code, it allowes you to import "modules" that are exported from other files..</p>
+    <p>
+      With this code, it allowes you to import "modules" that are exported from
+      other files..
+    </p>
 
-<pre><code class="language-javascript">
-    FILE: app.js
+    <pre><code class="language-javascript">
+FILE: app.js
 import express from 'express';
 
 const app = express();
 
 import pagesRouter from './routers/pagesRouter.js';
 
-    FILE: pagesRouter.js
+FILE: pagesRouter.js
 import { Router } from 'express';
 
 import { weekOnePage, weekTwoPage, weekThreePage, weekFourPage, weekFivePage, weekSixPage, indexPage } from '../util/pagesUtil.js';
@@ -70,7 +98,7 @@ import { weekOnePage, weekTwoPage, weekThreePage, weekFourPage, weekFivePage, we
 const router = Router();
 
 router.get('/', (req, res) => {
-    res.send(indexPage);
+res.send(indexPage);
 });
 
 // MORE CODE
@@ -78,60 +106,85 @@ router.get('/', (req, res) => {
 export default router;
 </code></pre>
 
-<p>When the module is exported at the bottom, it is now accessible to other JavaScript files, if imported.</p>
-            </section>
+    <p>
+      When the module is exported at the bottom, it is now accessible to other
+      JavaScript files, if imported.
+    </p>
+  </section>
 
-            <section id="commonjs">
-                <h1>Commonjs in JavaScript</h1>
+  <section id="commonjs">
+    <h2>Commonjs in JavaScript</h2>
 
-                <p>Commonjs is another module system that is a bit outdated but can still be used.</p>
-                <p>The syntax is different when 'importing'.</p>
-                <p>Instead of importing you use the keyword require. Example below:</p>
+    <p>
+      Commonjs is another module system that is a bit outdated but can still be
+      used.
+    </p>
+    <p>The syntax is different when 'importing'.</p>
+    <p>
+      Instead of using the 'import' statement you use the keyword require.
+      Example below:
+    </p>
 
-                <pre><code class="language-javascript">
-                    const express = require('express');
-                </code></pre>
+    <pre><code class="language-javascript">
+const express = require('express');
+</code></pre>
 
-                <h2>Commonjs vs ESM</h2>
-                <p>Use commonjs when mainting old legacy-code and use ESM (module) type for new and modern development.</p>
-            </section>
+    <h3>Commonjs vs ESM</h3>
+    <p>
+      Use commonjs when mainting old legacy-code and use ESM (module) type for
+      new and modern development.
+    </p>
+  </section>
 
-            <section id="redirection">
-                <h1>Redirection in Express </h1>
-                <p>At first i will go over the built in functions in Express.. (SERVER SIDE REDIRECTION)</p>
-                <pre><code class="language-javascript">
-                 res.redirect('/new-site');
-                 res.redirect(301, 'https://movedpermanently.com');   
-                </code></pre>
-                <p>You can use this code in a route, and then it will redirect the user based on the url.</p>
-                
-                <p>With the next two methods you will be able to do a client-side redirection, because the user is sent the site, and then the redirection happens.</p>
+  <section id="redirection">
+    <h2>Redirection in Express</h2>
+    <p>
+      At first i will go over the built in functions in Express.. (SERVER SIDE
+      REDIRECTION)
+    </p>
+    <pre><code class="language-javascript">
+res.redirect('/new-site');
+res.redirect(301, 'https://movedpermanently.com');   
+</code></pre>
+    <p>
+      You can use this code in a route, and then it will redirect the user based
+      on the url.
+    </p>
 
-                <p>However you can also use the DOM that is provided with native JS.</p>
-                <pre><code class="language-javascript">
-                    window.location.href = '/new-site';
-                </code></pre>
+    <p>
+      With the next two methods you will be able to do a client-side
+      redirection, because the user is sent the site, and then the redirection
+      happens.
+    </p>
 
-                <p>This will redirect the user as well.</p>
+    <p>However you can also use the DOM that is provided with native JS.</p>
+    <pre><code class="language-javascript">
+window.location.href = '/new-site';
+</code></pre>
 
-            
-                <p>The last way (that i know of), you can use to redirect the user is pure HTML.</p>
-            
-            <pre><code class="language-html">
-                &lt;meta http-equiv="refresh" content="0; url=/new-page"&gt;
-            </code></pre>
+    <p>This will redirect the user as well.</p>
 
-            <p>This will redirect the user when accessed.</p>
-            </section>
+    <p>
+      The last way (that i know of), you can use to redirect the user is pure
+      HTML.
+    </p>
 
+    <pre><code class="language-html">
+&lt;meta http-equiv="refresh" content="0; url=/new-page"&gt;
+</code></pre>
 
+    <p>This will redirect the user when accessed.</p>
+  </section>
 
-            <section id="npm">
-                <h1>NPM - and how to initialize new projects!</h1>
-                <p>Run the <code>npm init</code> command, and you will be guided through a number of questions, naming, versioning, descriptions.</p>
-                <p>You can also skip the questions with the <code>-y</code> flag.</p>
+  <section id="npm">
+    <h2>NPM - and how to initialize new projects!</h2>
+    <p>
+      Run the <code>npm init</code> command, and you will be guided through a
+      number of questions, naming, versioning, descriptions.
+    </p>
+    <p>You can also skip the questions with the <code>-y</code> flag.</p>
 
-                <pre><code class="language-json">
+    <pre><code class="language-json">
 {
   "name": "test",
   "version": "1.0.0",
@@ -144,8 +197,13 @@ export default router;
   "author": "",
   "license": "ISC",
   "type": "commonjs"
-}</code></pre>
+}
+</code></pre>
 
-<p>In this package.json all the metadata for your project is specified.</p>
-<p>This includes things such as 'author', 'license', type(commonjs or module). </p>
-            </section>
+    <p>In this package.json all the metadata for your project is specified.</p>
+    <p>
+      This includes things such as 'author', 'license', type(commonjs or
+      module).
+    </p>
+  </section>
+</main>

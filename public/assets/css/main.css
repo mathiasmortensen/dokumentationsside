@@ -1,19 +1,14 @@
-* {
-  box-sizing: border-box;
-}
-
 body {
   margin: 0;
   font-family: "Inter", sans-serif;
   font-size: 20px;
   color: #e7edf7;
-  background: #0b1120;
+  background: #121212;
 }
 
 a {
   text-decoration: none;
   position: relative;
-  color: #333;
 }
 
 a::after {
@@ -23,7 +18,7 @@ a::after {
   height: 2px;
   bottom: -2px;
   left: 0;
-  background-color: #007bff;
+  background: #007bff;
   transition: width 0.3s ease;
 }
 
@@ -32,68 +27,60 @@ a:hover::after {
 }
 
 .layout {
-  display: grid;
-  grid-template-columns: 280px 1fr;
+  display: flex;
+  height: 100vh;
+}
+
+.content-area {
+  display: flex;
+  flex: 1;
+  min-width: 0;
 }
 
 .topic-nav,
 .sidebar {
-  height: 100vh;
-  overflow: auto;
-  padding: 1rem;
+  width: 280px;
+  overflow-y: auto;
+  padding: 1.5rem;
   border-right: 1px solid #23314a;
-  background: #10182b;
-  position: sticky;
-  top: 0;
-
-
 }
 
 .topic-nav a,
 .sidebar a {
   display: block;
-  margin-bottom: 0.35rem;
+  margin-bottom: 1rem;
   padding: 0.45rem 0.55rem;
   color: #e7edf7;
 }
 
-.topic-nav a:hover, .sidebar a:hover{
-  color:#007bff;
-}
-
-.content-area {
-  display: grid;
-  grid-template-columns: 220px 1fr;
-}
-
-.content-area > main:only-child {
-  grid-column: 1 / -1;
+.topic-nav a:hover,
+.sidebar a:hover {
+  color: #007bff;
 }
 
 main {
-  padding: 1.5rem;
-}
-
-main h3 {
-  border-top: 1px solid #23314a;
+  flex: 1;
+  overflow: auto;
+  min-width: 0;
 }
 
 section {
   margin-bottom: 1rem;
   padding: 1rem;
   border: 1px solid #23314a;
-  border-radius: 12px;
+  border-radius: 0.75rem;
 }
 
-
-pre{
+pre {
   padding: 1rem;
   border: 1px solid #23314a;
-  border-radius: 12px;
+  border-radius: 0.75rem;
+  background: #0f1726;
+  overflow-x: auto;
 }
 
-li{
-  margin-top: 10px;
+li {
+  margin-top: 0.625rem;
 }
 
 table {
@@ -115,4 +102,41 @@ footer {
   padding: 1rem;
   border-top: 1px solid #23314a;
   color: #9dacbf;
+}
+
+h1 {
+  font-size: 2rem;
+  font-weight: 800;
+  letter-spacing: 0.01em;
+  color: #f2f7ff;
+  margin: 0 0 1rem;
+}
+
+h2 {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #dbe9ff;
+  margin: 2rem 0 0.75rem;
+  padding-left: 0.6rem;
+  border-left: 3px solid #3b82f6;
+}
+
+h3 {
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: #b8c9e6;
+  margin: 1.25rem 0 0.5rem;
+}
+
+html {
+  scroll-behavior: smooth;
+  overflow-y:auto;
+
+}
+
+section,
+pre,
+.topic-nav a,
+.sidebar a {
+  border-radius: 2rem;
 }
