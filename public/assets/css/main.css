@@ -68,8 +68,11 @@ a:hover::after {
 }
 
 main {
-  max-width: 860px;
   padding: 1.5rem;
+}
+
+main h3 {
+  border-top: 1px solid #23314a;
 }
 
 section {
@@ -79,12 +82,15 @@ section {
   border-radius: 12px;
 }
 
-pre {
+
+pre{
   padding: 1rem;
-  overflow: auto;
   border: 1px solid #23314a;
   border-radius: 12px;
-  background: #0f172a;
+}
+
+li{
+  margin-top: 10px;
 }
 
 table {

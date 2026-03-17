@@ -47,7 +47,7 @@ One of the most basic and important rules for Javascript, is to choose the right
 <li>Avoid <code>var</code>. This is pretty much outdated.</li>
 </ul>
 
-<h3>const</h3>
+<h3>Const</h3>
 
 <p>
 A <code>const</code> variable cannot be reassigned, but objects stored
@@ -65,8 +65,8 @@ user.name = "Victor"; // allowed
 <h3>Why var is problematic declaration type:</h3>
 
 <p>
-<code>var</code> has function scope and is hoisted. This can cause unexpected behavior.
-</p>
+<code>var</code> has function scope and is hoisted. This can cause unexpected behavior. What this basically means is that, the declaration is moved to the top of the file, however the value is not yet initialized </p>
+
 
 <pre><code class="language-javascript">
 console.log(a);
