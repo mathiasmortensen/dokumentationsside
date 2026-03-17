@@ -4,7 +4,7 @@
 
 body {
   margin: 0;
-  font-family: "Segoe UI", sans-serif;
+  font-family: "Inter", sans-serif;
   font-size: 20px;
   color: #e7edf7;
   background: #0b1120;
@@ -32,12 +32,11 @@ a:hover::after {
 }
 
 .layout {
-  min-height: calc(100vh - 58px);
   display: grid;
   grid-template-columns: 280px 1fr;
 }
 
-.course-nav,
+.topic-nav,
 .sidebar {
   height: 100vh;
   overflow: auto;
@@ -50,12 +49,16 @@ a:hover::after {
 
 }
 
-.course-nav a,
+.topic-nav a,
 .sidebar a {
   display: block;
   margin-bottom: 0.35rem;
   padding: 0.45rem 0.55rem;
   color: #e7edf7;
+}
+
+.topic-nav a:hover, .sidebar a:hover{
+  color:#007bff;
 }
 
 .content-area {
